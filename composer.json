@@ -1,0 +1,12 @@
+{
+  "name": "lgm/pgfx",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "pgfx\\":"src/"
+    }
+  },
+  "require": {
+    "ext-gd": "*"
+  }
+}
