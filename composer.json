@@ -7,6 +7,10 @@
     }
   },
   "require": {
+    "php": ">=8.0",
     "ext-gd": "*"
+  },
+  "require-dev": {
+    "phpunir/phpunit": "9.3.0"
   }
 }

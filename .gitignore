@@ -1,8 +1,11 @@
 .idea
 .iml
-
+dist
 
 # composer
 vendor
 composer.lock
 composer.phar
+
+# phpunit
+.phpunit.result.cache
