@@ -1,6 +1,7 @@
 {
   "name": "lgm/pgfx",
   "type": "project",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "pgfx\\":"src/"
