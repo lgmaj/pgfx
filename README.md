@@ -1,4 +1,4 @@
-#pgfx
+# pgfx
 
 Library for simplify creating vector graphics in PHP.
 
