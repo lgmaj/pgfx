@@ -20,5 +20,5 @@ $graphics->lineTo(150, 150);
 $graphics->endFill();
 
 $renderer = new GdImageRenderer(200, 200);
-$renderer->render($graphics)
+$renderer->render($graphics);
 ```
