@@ -3,6 +3,9 @@
 namespace pgfx\renderer\gd;
 
 use pgfx\display\Graphics;
+use pgfx\display\GraphicsPath;
+use pgfx\display\GraphicsSolidFill;
+use pgfx\display\GraphicsStroke;
 use pgfx\renderer\PGFXRenderer;
 
 class GdImageRenderer implements PGFXRenderer
@@ -33,14 +36,26 @@ class GdImageRenderer implements PGFXRenderer
         header("Content-type: image/jpeg");
         $img = imagecreate($this->wight, $this->height);
         $color = $this->createColor($img, $this->bg);
-        foreach ($graphics->readGraphicsData() as $command) {
-            if ($command[0] == 0) {
-                $color = $this->createColor($img, $command[1]);
+        $fill = false;
+
+        foreach ($graphics->readGraphicsData() as $data) {
+            if ($data instanceof GraphicsStroke) {
+                $color = $this->createColor($img, $data->fill->color);
+                $fill = false;
             }
-            if ($command[0] == 1) {
-                imageline($img, $command[1], $command[2], $command[3], $command[4], $color);
+            if ($data instanceof GraphicsSolidFill) {
+                $color = $this->createColor($img, $data->color);
+                $fill = true;
+            }
+            if ($data instanceof GraphicsPath) {
+                if ($fill) {
+                    imagefilledpolygon($img, $data->data, count($data->commands), $color);
+                } else {
+                    imagepolygon($img, $data->data, count($data->commands), $color);
+                }
             }
         }
+
         imagejpeg($img, null, $this->quality);
         imagedestroy($img);
     }

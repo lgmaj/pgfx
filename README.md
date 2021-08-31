@@ -9,13 +9,16 @@ use pgfx\display\Graphics;
 use pgfx\renderer\gd\GdImageRenderer;
 
 $graphics = new Graphics();
-$graphics->lineStyle();
-$graphics->moveTo(10, 10);
-$graphics->lineTo(100, 10);
-$graphics->lineTo(100, 100);
-$graphics->lineTo(10, 100);
-$graphics->lineTo(10, 10);
+$graphics->beginFill(0x787878);
+$graphics->lineStyle(1, 0x00fff);
+$graphics->moveTo(50, 50);
+$graphics->lineTo(150, 50);
+$graphics->lineTo(150, 150);
+$graphics->lineTo(50, 50);
+$graphics->lineTo(50, 150);
+$graphics->lineTo(150, 150);
+$graphics->endFill();
 
 $renderer = new GdImageRenderer(200, 200);
-$renderer->render($graphics);
+$renderer->render($graphics)
 ```
