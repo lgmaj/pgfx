@@ -14,4 +14,14 @@ class Point
         $this->x = $x;
         $this->y = $y;
     }
+
+    public function add(Point $v): Point
+    {
+        return new Point($this->x + $v->x, $this->y + $v->y);
+    }
+
+    public function subtract(Point $v): Point
+    {
+        return new Point($this->x - $v->x, $this->y - $v->y);
+    }
 }

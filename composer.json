@@ -4,14 +4,15 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "pgfx\\":"src/"
+      "pgfx\\": "src/"
     }
   },
   "require": {
     "php": ">=8.0",
-    "ext-gd": "*"
+    "ext-gd": "*",
+    "syntaxevolution/gifcreator": "1.0.3"
   },
   "require-dev": {
-    "phpunir/phpunit": "9.3.0"
+    "phpunir/phpunit": "9.*"
   }
 }

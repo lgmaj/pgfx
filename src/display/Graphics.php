@@ -18,6 +18,13 @@ final class Graphics
         );
     }
 
+    public function clear(): void
+    {
+        $this->graphicsData = [];
+        $this->fillPath = null;
+        $this->linePath = null;
+    }
+
     public function endFill(): void
     {
         array_push($this->graphicsData, new GraphicsEndFill());
@@ -35,16 +42,30 @@ final class Graphics
         );
     }
 
-    function lineTo(float $x, float $y): void
+    public function lineTo(float $x, float $y): void
     {
         $this->fillPath?->lineTo($x, $y);
         $this->linePath?->lineTo($x, $y);
     }
 
-    function moveTo(float $x, float $y): void
+    public function moveTo(float $x, float $y): void
     {
         $this->fillPath?->moveTo($x, $y);
         $this->linePath?->moveTo($x, $y);
+    }
+
+    public function drawCircle(float $x, float $y, float $radius): void
+    {
+        array_push($this->graphicsData, new GraphicsDrawCircle(
+            $x, $y, $radius
+        ));
+    }
+
+    public function drawRect(float $x, float $y, float $width, float $height): void
+    {
+        array_push($this->graphicsData, new GraphicsDrawRect(
+            $x, $y, $width, $height
+        ));
     }
 
     function readGraphicsData(): array
