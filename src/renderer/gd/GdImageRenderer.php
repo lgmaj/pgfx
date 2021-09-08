@@ -100,6 +100,9 @@ class GdImageRenderer implements PGFXRenderer
         $this->wight = $config->wight;
         $this->height = $config->height;
 
+        $stage->setWight($config->wight);
+        $stage->setHeight($config->height);
+
         $stage->onAddedToStage();
 
         $frame = 0;
