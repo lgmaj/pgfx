@@ -12,29 +12,32 @@ use pgfx\display\GraphicsSolidFill;
 use pgfx\display\GraphicsStroke;
 use pgfx\display\Stage;
 use pgfx\renderer\config\RendererConfig;
+use pgfx\renderer\gd\target\GdGifRenderer;
+use pgfx\renderer\gd\target\GdImageRendererTarget;
+use pgfx\renderer\gd\target\GdJpgRenderer;
 use pgfx\renderer\PGFXRenderer;
 use ReflectionClass;
 use SyntaxEvolution\GifCreator\GifCreator;
 
 class GdImageRenderer implements PGFXRenderer
 {
-    private int $quality;
+    private GdImageRendererTarget $target;
 
     public function __construct(private int $wight = 320,
                                 private int $height = 240,
                                 private int $bg = 0xffffff)
     {
-        $this->quality = 100;
+        $this->target = new GdJpgRenderer(100);
     }
 
-    public function setBackgroundColor($value): void
+    public function setBackgroundColor(int $value): void
     {
         $this->bg = $value;
     }
 
-    public function setQuality($value): void
+    public function setTarget(GdImageRendererTarget $value): void
     {
-        $this->quality = $value;
+        $this->target = $value;
     }
 
     public function render(Graphics $graphics): void
@@ -85,13 +88,13 @@ class GdImageRenderer implements PGFXRenderer
             }
         }
 
-        header("Content-type: image/jpeg");
-        imagejpeg($img, null, $this->quality);
+        $this->target->render($img);
         imagedestroy($img);
     }
 
     public function renderStage(Stage $stage): void
     {
+        $this->setTarget(new GdGifRenderer());
         $config = $this->getConfig(new ReflectionClass($stage::class));
 
         $this->wight = $config->wight;

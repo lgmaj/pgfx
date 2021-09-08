@@ -4,9 +4,7 @@ namespace pgfx\renderer\gd;
 
 class GdImageColorPool
 {
-    /**
-     * @var array<int, int>
-     */
+    /** @var array<int, int> */
     private array $pool = [];
 
     function getColor(\GdImage $img, $color): int
