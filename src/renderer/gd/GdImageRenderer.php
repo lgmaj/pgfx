@@ -54,14 +54,14 @@ class GdImageRenderer implements PGFXRenderer
             }
             if ($data instanceof GraphicsSolidFill) {
                 $fillColor = $colorPool->getColor($img, $data->color);
-                $strokeColor = -1;
             }
             if ($data instanceof GraphicsPath) {
                 $size = count($data->commands);
                 if ($size > 0) {
                     if ($fillColor > -1) {
                         imagefilledpolygon($img, $data->data, $size, $fillColor);
-                    } else {
+                    }
+                    if ($strokeColor > -1) {
                         imagepolygon($img, $data->data, $size, $strokeColor);
                     }
                 }

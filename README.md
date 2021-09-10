@@ -12,7 +12,7 @@ use pgfx\renderer\gd\GdImageRenderer;
 
 $graphics = new Graphics();
 $graphics->beginFill(0x787878);
-$graphics->lineStyle(1, 0x00fff);
+$graphics->lineStyle(1, 0x00ffff);
 $graphics->moveTo(50, 50);
 $graphics->lineTo(150, 50);
 $graphics->lineTo(150, 150);
@@ -22,6 +22,7 @@ $graphics->lineTo(150, 150);
 $graphics->endFill();
 
 $renderer = new GdImageRenderer(200, 200);
+$renderer->setBackgroundColor(0x232323);
 $renderer->render($graphics);
 ```
 
